@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_project
 
   def index
   end
@@ -11,6 +12,8 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:project_id])
+    @activity = Activity.find(params[:id])
   end
 
   def create
@@ -24,7 +27,11 @@ class ActivitiesController < ApplicationController
 
 
   private
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
 
-  def activity_params
+  def activities_params
+    params.require(:activity).permit(:name)
   end
 end

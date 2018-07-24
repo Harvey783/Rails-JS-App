@@ -21,12 +21,36 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @project = current_user.projects.new(project_params)
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project, notice: 'Project created.' }
+        format.json { render :show, status: :created, location: @project }
+      else
+        format.html { render :new }
+        format.json { render json: }
+      end
+    end
   end
 
   def update
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to @project, notice: 'Project updated.' }
+        format.json { render :show, status: :ok, location: @project }
+      else
+        format.html { render :edit }
+        format.json { render json: }
+      end
+    end
   end
 
   def destroy
+    @project.destroy
+    respond_to do |format|
+      format.html { redirect_to projects_url, notice: 'Project destroyed.' }
+      format.json { render json: }
+    end
   end
 
 
