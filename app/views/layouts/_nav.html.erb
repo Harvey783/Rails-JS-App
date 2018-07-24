@@ -1,0 +1,13 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Rails JS App</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Home", root_path%></li>
+      <li><%= link_to "New Project", new_project_path%></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
+    </ul>
+  </div>
+</nav>
