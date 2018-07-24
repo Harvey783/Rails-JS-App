@@ -1,0 +1,5 @@
+<ol>
+  <% @project.activities.each do |activity| %>
+  <li><%= link_to activity.name, edit_project_activity_path(@project, activity)%></li>
+  <% end %>
+</ol>
