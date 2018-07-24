@@ -3,12 +3,11 @@ class ActivitiesController < ApplicationController
   before_action :set_project
 
   def index
-  end
-
-  def show
-  end
-
-  def new
+    @activities = @project.activities
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
+    end
   end
 
   def edit
@@ -17,14 +16,27 @@ class ActivitiesController < ApplicationController
   end
 
   def create
+    @activity = @project.activities.build(activities_params)
+    if @activity.save
+      redirect_to @project
+    else
+      render "projects/show"
+    end
   end
 
   def update
+    @project = Project.find(params[:project_id])
+    @activity = Activity.find(params[:id])
+    @activity.update(activities_params)
+    redirect_to project_path(@project)
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to project_path(@project)
   end
-
 
   private
   def set_project

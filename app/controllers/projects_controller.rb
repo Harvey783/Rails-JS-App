@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @activities = @project.activities
     @activity = Activity.new
+    respond_to :html, :json
   end
 
   def new
@@ -52,7 +53,6 @@ class ProjectsController < ApplicationController
       format.json { render json: }
     end
   end
-
 
   private
   def set_project
