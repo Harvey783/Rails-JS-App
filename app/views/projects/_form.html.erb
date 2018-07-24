@@ -1,0 +1,14 @@
+<%= form_for(@project) do |f| %>
+
+<div class="field">
+    <%= f.label :name, placeholder: "Name" %><br>
+    <%= f.text_field :name %>
+
+  </div><br></br>
+
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>
+
+<br>
