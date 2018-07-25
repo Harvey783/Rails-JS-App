@@ -12,6 +12,12 @@ ProjectIndex.prototype.projectLink = function(link) {
   return output;
 }
 
+var projectColumn = function() {
+  let output =
+  `<div class="projects">`;
+  return output;
+}
+
 
 
 $(function(){
