@@ -3,6 +3,7 @@ function ProjectIndex(project) {
   this.name = project.name;
 };
 
+
 ProjectIndex.prototype.projectLink = function(link) {
   let output =
   `<a href="/projects/${this.id}"
@@ -12,11 +13,13 @@ ProjectIndex.prototype.projectLink = function(link) {
   return output;
 }
 
+
 var projectColumn = function() {
   let output =
   `<div class="projects">`;
   return output;
 }
+
 
 ProjectIndex.prototype.projectName = function() {
   let output =
@@ -24,11 +27,30 @@ ProjectIndex.prototype.projectName = function() {
   return output;
 }
 
+
 $(document).on('click', '.projects-index', function(event){
   event.preventDefault();
   getProjectsIndex();
 });
 
+
+const getProjectsIndex = function (){
+  $.get('/projects.json').done(function(data){
+    const projects = data.sort(function(a, b){
+      return a - b});
+
+  let projectsIndex = projectColumn();
+  projectsIndex += `<div class="projects">`;
+
+  $.each(projects, function(index, value){
+    let projectIndex = new ProjectIndex(value);
+    projectsIndex += projectIndex.projectName();
+  });
+
+  projectsIndex += '</div>';
+  $('.main').html(projectsIndex);
+});
+}
 
 
 $(function(){
