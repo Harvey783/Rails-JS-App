@@ -24,6 +24,11 @@ ProjectIndex.prototype.projectName = function() {
   return output;
 }
 
+$(document).on('click', '.projects-index', function(event){
+  event.preventDefault();
+  getProjectsIndex();
+});
+
 
 
 $(function(){
