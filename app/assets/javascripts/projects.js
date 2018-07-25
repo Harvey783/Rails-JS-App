@@ -39,17 +39,18 @@ const getProjectsIndex = function (){
     const projects = data.sort(function(a, b){
       return a - b});
 
-  let projectsIndex = projectColumn();
-  projectsIndex += `<div class="projects">`;
+    let projectsIndex = projectColumn();
+    projectsIndex += `<div class="projects">`;
 
-  $.each(projects, function(index, value){
-    let projectIndex = new ProjectIndex(value);
-    projectsIndex += projectIndex.projectName();
+      $.each(projects, function(index, value){
+
+        let projectIndex = new ProjectIndex(value);
+        projectsIndex += projectIndex.projectName();
+      });
+
+    projectsIndex += '</div>';
+    $('.main').html(projectsIndex);
   });
-
-  projectsIndex += '</div>';
-  $('.main').html(projectsIndex);
-});
 }
 
 

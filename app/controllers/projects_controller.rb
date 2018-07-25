@@ -4,7 +4,10 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    respond_to :html, :json
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @projects }
+    end
   end
 
   def show
@@ -28,8 +31,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project created.' }
         format.json { render :show, status: :created, location: @project }
       else
-        format.html { render :new }
-        format.json { render json: }
+        respond_to :html, :json
       end
     end
   end
@@ -40,8 +42,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
-        format.html { render :edit }
-        format.json { render json: }
+        respond_to :html, :json
       end
     end
   end
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project destroyed.' }
-      format.json { render json: }
+      format.json { render :index }
     end
   end
 
