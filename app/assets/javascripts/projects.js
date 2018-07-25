@@ -3,6 +3,15 @@ function ProjectIndex(project) {
   this.name = project.name;
 };
 
+ProjectIndex.prototype.projectLink = function(link) {
+  let output =
+  `<a href="/projects/${this.id}"
+  class="js-projects-show"
+  id="project-${this.id}">
+  ${link}</a>`;
+  return output;
+}
+
 
 
 $(function(){
