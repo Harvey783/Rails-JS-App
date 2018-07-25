@@ -18,6 +18,12 @@ var projectColumn = function() {
   return output;
 }
 
+ProjectIndex.prototype.projectName = function() {
+  let output =
+  `<h4> ${this.projectLink(this.name)} </h4>`;
+  return output;
+}
+
 
 
 $(function(){
