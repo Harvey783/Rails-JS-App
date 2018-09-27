@@ -8,16 +8,16 @@ function ProjectIndex(project) {
   this.name = project.name;
 }
 
-ProjectIndex.prototype.projectLink = function(link) {
+ProjectIndex.prototype.projectLink = function() {
   let output = `<a href="/projects/${this.id}"
   class="js-projects-show"
   id="project-${this.id}">
-  ${link}</a>`;
+  ${this.name}</a>`;
   return output;
 };
 
 ProjectIndex.prototype.projectName = function() {
-  let output = `<h4> ${this.projectLink(this.name)} </h4>`;
+  let output = `<h4> ${this.projectLink()} </h4>`;
   return output;
 };
 
@@ -44,14 +44,16 @@ const getProjectsIndex = function() {
   });
 };
 
-$(function() {
-  $("a.load_activities").on("click", function(e) {
-    $.ajax({
-      method: "GET",
-      url: this.href
-    }).success(function(response) {
-      $("div.activities").html(response);
+$(document).on("turbolinks:load", function() {
+  $(function() {
+    $("a.load_activities").on("click", function(e) {
+      $.ajax({
+        method: "GET",
+        url: this.href
+      }).success(function(response) {
+        $("div.activities").html(response);
+      });
+      e.preventDefault();
     });
-    e.preventDefault();
   });
 });
