@@ -3,7 +3,7 @@
     <h3 class="projectName"><%= @project.name %></h3><br>
 
     <div class="activities">
-      <p>
+      <p id ="activityName">
         <%= link_to "Load Activities", project_activities_path(@project), :class => "load_activities" %>
       </p>
     </div><br>
@@ -11,12 +11,15 @@
     <%= form_for(@activity, :url => project_activities_path(@project)) do |f| %>
     <div class="form-group">
       <%= f.text_area :name %><br></br>
+      
       <%= f.submit class: "btn btn-primary btn-sm" %>
       <% end %>
       <br><br></br>
 
-      <%= link_to 'Projects', projects_path %>  |
+      <%= link_to 'Projects', root_path %>  |
       <%= link_to 'Edit Project', edit_project_path(@project) %>  |
       <%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-    </div></div></div>
+    </div>
+    </div>
+    </div>

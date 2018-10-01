@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    # @projects = current_user.projects.all
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @projects }
@@ -17,7 +18,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = current_user.projects.new
+    @project = Project.new
     respond_to :html, :json
   end
 
@@ -28,8 +29,8 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project created.' }
-        format.json { render :show, status: :created, location: @project }
+        format.html { redirect_to root_url, notice: 'Project created.' }
+        format.json { render :show }
       else
         respond_to :html, :json
       end
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project destroyed.' }
+      format.html { redirect_to root_url, notice: 'Project destroyed.' }
       format.json { render :index }
     end
   end

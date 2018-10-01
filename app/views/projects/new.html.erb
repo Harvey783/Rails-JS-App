@@ -1,10 +1,17 @@
 <div class="container">
   <div class="col-md-8">
+        <div class="main">
 
-<h3>New Project</h3>
+        <button class="btn btn-secondary" type="button">
+        <%= link_to "LOAD PROJECTS", 
+        projects_path, :class => "projects-index" %>
+        </button><br>
+
+      </div>
+      <br><br>
+
 
 <%= render 'form' %>
 
-<%= link_to 'Back', projects_path %>
 
 </div></div>

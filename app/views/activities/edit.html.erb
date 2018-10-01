@@ -3,13 +3,7 @@
     
     <h3>Update Activity for <%= @project.name %></h3><br>
     <%= render 'form' %>
-
-    <%= form_for ([@project, @activity]) do |f| %>
-
-    <div class="form-group">
-      <%= button_to "Delete Activity", project_activity_path(@project, @activity), method: 'delete', class: "btn btn-danger"%>
-      <% end %>
-
-    </div>
+    <br>
+    
   </div>
 </div>
