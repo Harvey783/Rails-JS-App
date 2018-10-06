@@ -64,7 +64,7 @@ $(document).on("turbolinks:load", function() {
 });
 
 $(function() {
-  $("#new_project").submit(function(event) {
+  $("#new_project").on("submit", function(event) {
     event.preventDefault();
 
     var values = $(this).serialize();
