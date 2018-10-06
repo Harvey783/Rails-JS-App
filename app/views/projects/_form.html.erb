@@ -1,13 +1,7 @@
 <%= form_for (@project) do |f| %>
 
-<div class="field">
-    <%# <%= f.label :name, placeholder: "Name" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name %><br><br>
 
-  </div><br>
 
-  <div class="actions">
-    <%= f.submit class: "btn btn-primary btn-sm" %>
-  </div>
+    <%= f.submit class: "btn btn-primary btn-sm", id: "project-submit" %>
 <% end %>
-<br>

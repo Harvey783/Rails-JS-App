@@ -27,14 +27,16 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.new(project_params)
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to root_url, notice: 'Project created.' }
-        format.json { render :show }
-      else
-        respond_to :html, :json
-      end
-    end
+    @project.save
+    render json: @project, :layout => false
+    # respond_to do |format|
+    #   if @project.save
+    #     format.html { redirect_to root_url }
+    #     format.json { render json: project }
+    #   else
+    #     respond_to :html, :json
+    #   end
+    # end
   end
 
   def update

@@ -1,3 +1,11 @@
+$(document).on("turbolinks:load", function() {
+  $(document).on("click", ".projects-index", function(e) {
+    e.preventDefault();
+    getProjectsIndex();
+  });
+});
+///////////////////////////////////////
+
 var projectColumn = function() {
   let output = `<div class="projects">`;
   return output;
@@ -21,11 +29,7 @@ ProjectIndex.prototype.projectName = function() {
   return output;
 };
 
-$(document).on("click", ".projects-index", function(event) {
-  event.preventDefault();
-  getProjectsIndex();
-});
-
+// AJAX //////////////////
 const getProjectsIndex = function() {
   $.get("/projects.json").done(function(data) {
     const projects = data.sort(function(a, b) {
@@ -40,10 +44,11 @@ const getProjectsIndex = function() {
     });
 
     projectsIndex += "</div>";
-    $(".main").html(projectsIndex);
+    $(".projects-main").html(projectsIndex);
   });
 };
 
+// AJAX ACTIVITIES LOAD
 $(document).on("turbolinks:load", function() {
   $(function() {
     $("a.load_activities").on("click", function(e) {
@@ -57,3 +62,34 @@ $(document).on("turbolinks:load", function() {
     });
   });
 });
+
+$(function() {
+  $("#new_project").submit(function(event) {
+    event.preventDefault();
+
+    var values = $(this).serialize();
+
+    var posting = $.post("/projects", values);
+
+    posting.done(function(data) {
+      var project = data;
+      $(".projects").append(project["name"]);
+    });
+  });
+});
+
+// $(function() {
+//   $("#new_project").on("submit", function(e) {
+//     const data = $(this).serialize(); // serialize method creates a text string in standard URL encoded notation
+//     $.ajax({
+//       type: "POST",
+//       url: this.action,
+//       data: data, // form data
+//       success: function(response) {
+//         $("#project_name").val(""); // empty out text area
+//         $(".projects").append(response);
+//       }
+//     });
+//     e.preventDefault();
+//   });
+// });
