@@ -63,6 +63,8 @@ $(document).on("turbolinks:load", function() {
   });
 });
 
+// AJAX PROJECT POST
+
 $(function() {
   $("#new_project").on("submit", function(event) {
     event.preventDefault();
@@ -72,24 +74,8 @@ $(function() {
     var posting = $.post("/projects", values);
 
     posting.done(function(data) {
-      var project = data;
-      $(".projects").append(project["name"]);
+      var project = new ProjectIndex(data);
+      $(".projects").append(project.projectLink());
     });
   });
 });
-
-// $(function() {
-//   $("#new_project").on("submit", function(e) {
-//     const data = $(this).serialize(); // serialize method creates a text string in standard URL encoded notation
-//     $.ajax({
-//       type: "POST",
-//       url: this.action,
-//       data: data, // form data
-//       success: function(response) {
-//         $("#project_name").val(""); // empty out text area
-//         $(".projects").append(response);
-//       }
-//     });
-//     e.preventDefault();
-//   });
-// });
