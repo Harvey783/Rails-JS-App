@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     #   else
     #     respond_to :html, :json
     #   end
-    # end
+    # end.
   end
 
   def update
