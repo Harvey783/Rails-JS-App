@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    # @projects = current_user.projects.all
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @projects }
