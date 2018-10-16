@@ -63,15 +63,19 @@ $(document).on("turbolinks:load", function() {
   });
 });
 
-// AJAX PROJECT POST
+// PROJECT POST
+
 $(function() {
-  $("#new_project").on("submit", function(event) {
+  $("#new_project").submit(function(event) {
     event.preventDefault();
+    // event listener to prevent form submission
 
     var values = $(this).serialize();
+    // take form data and serialize
 
     var posting = $.post("/projects", values);
-
+    // retrieve data via $.post and pass it the URL and values
+    // specify what happens once AJAX request is done
     posting.done(function(data) {
       var project = new ProjectIndex(data);
       $(".projects").append(project.projectName());
