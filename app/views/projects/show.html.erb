@@ -2,11 +2,20 @@
   <div class="col-md-8">
     <h3 class="projectName"><%= @project.name %></h3><br>
 
+
+
     <div class="activities">
-      <p id ="activityName">
-        <%= link_to "Load Activities", project_activities_path(@project), :class => "load_activities" %>
+     <p id ="activityName">
+      <%= link_to "Load Activities", project_activities_path(@project), :class => "load_activities" %>
       </p>
     </div><br>
+
+    <div>
+    <button type="button" id="js-button" class="btn btn-danger btn-sm" data-id="<%=@project.id%>">
+    Sort Activities
+    </button>
+    </div>
+    <br>
 
     <%= form_for(@activity, :url => project_activities_path(@project)) do |f| %>
     <div class="form-group">

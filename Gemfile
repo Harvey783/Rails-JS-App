@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.3'
 gem 'rails', '~> 5.2.0'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'autoprefixer-rails'
 gem 'active_model_serializers'
 gem 'jquery-rails'
 gem 'devise'

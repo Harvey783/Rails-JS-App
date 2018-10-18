@@ -50,6 +50,7 @@ const getProjectsIndex = function() {
 
 // AJAX ACTIVITIES LOAD
 $(document).on("turbolinks:load", function() {
+  attachSortListener();
   $(function() {
     $("a.load_activities").on("click", function(e) {
       $.ajax({
@@ -62,6 +63,33 @@ $(document).on("turbolinks:load", function() {
     });
   });
 });
+
+function attachSortListener() {
+  $("#js-button").click(function(e) {
+    let url = `/projects/${this.dataset.id}.json`;
+    $.ajax({
+      method: "GET",
+      url: url
+    }).success(function(response) {
+      debugger;
+      response.activities.sort(function(a, b) {
+        var nameA = a.name.toUpperCase();
+        var nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+      $("div.activities").html("");
+      response.activities.forEach(function(x) {
+        $("div.activities").append(`<p>${x.name}</p>`);
+      });
+    });
+  });
+}
 
 // PROJECT POST
 
