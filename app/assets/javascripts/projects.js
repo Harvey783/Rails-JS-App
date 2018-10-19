@@ -71,7 +71,6 @@ function attachSortListener() {
       method: "GET",
       url: url
     }).success(function(response) {
-      debugger;
       response.activities.sort(function(a, b) {
         var nameA = a.name.toUpperCase();
         var nameB = b.name.toUpperCase();

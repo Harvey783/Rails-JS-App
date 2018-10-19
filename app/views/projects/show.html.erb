@@ -9,7 +9,7 @@
     </div><br>
 
     <div>
-      <button id="js-button" class="btn btn-danger btn-sm" data-id="<%=@project.id%>">Sort Activities</button>
+      <button type="button" id="js-button" class="btn btn-danger btn-sm" data-id="<%=@project.id%>">Sort Activities</button>
     </div><br>
 
     <%= form_for(@activity, :url => project_activities_path(@project)) do |f| %>
